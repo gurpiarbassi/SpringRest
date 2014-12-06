@@ -1,0 +1,58 @@
+package com.gurps.library.service;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/service/library")
+public class LibraryService {
+
+	@RequestMapping(value="/addBook", method = RequestMethod.POST)
+	public ResponseEntity<Book> addBook(@RequestBody @Valid final Book book){
+		return new ResponseEntity<Book>(book, HttpStatus.OK);	
+	}
+	
+	@RequestMapping(value="/addBooks", method = RequestMethod.POST)
+	public ResponseEntity<List<Book>> addBook(@RequestBody @Valid final List<Book> books){
+		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);	
+	}
+	
+	@RequestMapping(value="/getBook{isbn}", method = RequestMethod.GET)
+	public ResponseEntity<Book> getBook(@PathVariable("isbn") @NotEmpty String isbn){
+		return new ResponseEntity<Book>(new Book(), HttpStatus.OK);	
+	}
+	
+	@RequestMapping(value="/reCategorise", method = RequestMethod.PUT)
+	public ResponseEntity<List<Book>> reCategorise(@RequestBody @Valid RecategorisationRequest request){
+		
+		List<Book> books = request.getBooks();
+		books.stream().forEach(book -> book.setCategory(request.getCategory()));
+		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);	
+	}
+	
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	public ResponseEntity<Book> list(){
+		Book book = new Book();
+		book.setAuthor("kiki");
+		book.setTitle("my title");
+		book.setCategory("children");
+		book.setIsbn("98765");
+		return new ResponseEntity<Book>(book, HttpStatus.OK);	
+	}
+	
+	@RequestMapping(value = "delete/{isbn}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("isbn") String isbn){
+	
+		System.out.println("deleting isbn " + isbn);
+	}
+}

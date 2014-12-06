@@ -1,0 +1,1 @@
+spring boot expects static content to be either in a public or static folder by default.
