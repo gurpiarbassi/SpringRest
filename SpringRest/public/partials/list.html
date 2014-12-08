@@ -11,7 +11,7 @@
   </thead>
   <tbody>  
 	  <tr ng-repeat="book in bookList">
-	  	<td>{{book.title}}</td>
+	  	<td><a href="" ng-click="selectBook(book)">{{book.title}}</a></td>
 	  	<td>{{book.author}}</td>
 	  	<td>{{book.category}}</td>
 	  	<td><input type="radio"  name="deleteBook" ng-model="$parent.selectedBook" value="{{book.isbn}}"/></td>

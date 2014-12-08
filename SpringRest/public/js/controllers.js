@@ -20,16 +20,20 @@ angular.module('mongorest.controllers', [])
 	  	  $state.go('s_list');
 		});
 	};
+	
+	$scope.selectBook = function(book){
+	  $state.go('s_update', book);
+	};
   }])
 	.controller('CtrlAddBook', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
     $log.debug('CtrlAddBook controller fired.');
-    $scope.newBook = {title: null, author: null, category: null, isbn: null};
+    $scope.book = {title: null, author: null, category: null, isbn: null};
     
     $scope.goBack = function(){
 		$state.go('s_list');
 	};
 	
-	$scope.addBook = function(){
+	$scope.saveBook = function(){
 		Restangular.all('addBook').post($scope.newBook).then(function(body) {
 	  	  var savedBook = body;
 	  	  $log.debug('book saved  = ' + savedBook);
@@ -37,16 +41,16 @@ angular.module('mongorest.controllers', [])
 		});		
 	};	
   }])
-  .controller('CtrlUpdateBook', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
-    $log.debug('CtrlUpdateBook controller fired.');
-    
-    
+  .controller('CtrlUpdateBook', ['$scope', '$rootScope', '$log', '$state', '$stateParams', 'Restangular', function($scope, $rootScope, $log, $state, $stateParams, Restangular) {
+    $log.debug('CtrlUpdateBook controller fired with params ' + $stateParams.title);
+     
+    $scope.book = $stateParams;
     $scope.goBack = function(){
 		$state.go('s_list');
 	};
 	
-	$scope.updateBook = function(){
-		Restangular.all('addBook').post($scope.newBook).then(function(body) {
+	$scope.saveBook = function(){
+		Restangular.all('addBook').post($scope.book).then(function(body) {
 	  	  var savedBook = body;
 	  	  $log.debug('book saved  = ' + savedBook);
 	  	  $state.go('s_list');

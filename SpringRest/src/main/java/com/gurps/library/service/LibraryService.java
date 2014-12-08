@@ -33,6 +33,11 @@ public class LibraryService {
 		return new ResponseEntity<Book>(new Book(), HttpStatus.OK);	
 	}
 	
+	@RequestMapping(value="/update", method = RequestMethod.PUT)
+	public ResponseEntity<Book> updateBook(@RequestBody @Valid Book book){
+		return new ResponseEntity<Book>(new Book(), HttpStatus.OK);	
+	}
+	
 	@RequestMapping(value="/reCategorise", method = RequestMethod.PUT)
 	public ResponseEntity<List<Book>> reCategorise(@RequestBody @Valid RecategorisationRequest request){
 		

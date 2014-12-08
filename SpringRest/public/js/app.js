@@ -22,9 +22,10 @@ angular.module('mongorest', [
         controller:  'CtrlAddBook'
       })
     .state('s_update', {
-        url:         '/updateBook',
+        
         templateUrl: 'partials/bookForm.html',
-        controller:  'CtrlUpdateBook'
+        controller:  'CtrlUpdateBook',
+        params:      ['title', 'author', 'category', 'isbn']
       });
   }]).
 run(['$log', 'Restangular', '$location', function($log, Restangular, $location) {
