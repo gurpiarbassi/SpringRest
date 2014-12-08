@@ -1,5 +1,6 @@
 package com.gurps.library.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,13 +42,22 @@ public class LibraryService {
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public ResponseEntity<Book> list(){
-		Book book = new Book();
-		book.setAuthor("kiki");
-		book.setTitle("my title");
-		book.setCategory("children");
-		book.setIsbn("98765");
-		return new ResponseEntity<Book>(book, HttpStatus.OK);	
+	public ResponseEntity<List<Book>> list(){
+		List<Book> books = new ArrayList<>();
+		Book book1 = new Book();
+		book1.setAuthor("kiki");
+		book1.setTitle("my title");
+		book1.setCategory("children");
+		book1.setIsbn("98765");
+		books.add(book1);
+		
+		Book book2 = new Book();
+		book2.setAuthor("deep");
+		book2.setTitle("grufallo");
+		book2.setCategory("children");
+		book2.setIsbn("12345");
+		books.add(book2);
+		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value = "delete/{isbn}", method = RequestMethod.DELETE)
