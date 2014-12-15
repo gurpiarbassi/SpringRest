@@ -1,4 +1,4 @@
-package com.gurps.library.service;
+package com.gurps.library.controller;
 
 import java.util.List;
 

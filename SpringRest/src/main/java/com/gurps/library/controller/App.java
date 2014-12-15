@@ -1,10 +1,10 @@
-package com.gurps.library.service;
+package com.gurps.library.controller;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = { "com.gurps.library.service" })
+@ComponentScan(basePackages = { "com.gurps.library.controller", "com.gurps.library.repository" })
 @EnableAutoConfiguration
 public class App {
 

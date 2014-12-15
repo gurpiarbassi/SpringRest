@@ -1,4 +1,4 @@
-package com.gurps.library.service;
+package com.gurps.library.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gurps.library.repository.LibraryRepository;
+
 @RestController
 @RequestMapping("/service/library")
-public class LibraryService {
+public class LibraryController {
+
+	
+	private LibraryRepository libraryRepository;
+	
+	@Autowired
+	public void setLibraryRepository(LibraryRepository libraryRepository) {
+		this.libraryRepository = libraryRepository;
+	}
 
 	@RequestMapping(value="/addBook", method = RequestMethod.POST)
 	public ResponseEntity<Book> addBook(@RequestBody @Valid final Book book){
@@ -48,6 +59,9 @@ public class LibraryService {
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public ResponseEntity<List<Book>> list(){
+		
+		
+		//List<com.gurps.library.domain.Book> allBooks = libraryRepository.findAll();
 		List<Book> books = new ArrayList<>();
 		Book book1 = new Book();
 		book1.setAuthor("kiki");
