@@ -1,89 +1,63 @@
 package com.gurps.library.domain;
 
+import java.math.BigDecimal;
+import java.util.Collection;
+
+import javax.validation.constraints.NotNull;
+
+import lombok.Data;
+
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+
 
 @Document(collection="Book")
+@CompoundIndexes({
+    @CompoundIndex(name = "age_idx", def = "{'tit': 1, 'pub': 1}")
+})
+@Data
 public class Book {
 
 	@Id
 	private String id;
 	
 	@NotBlank
+	@Field("tit")
 	private String title;	
+	
+	@NotNull
+	@Field("auth")
+	private Collection<Author> authors;	
+	
+	@Field("revs")
+	private Collection<Review> reviews;
+	
+	@Field("revCount")
+	private int reviewCount;
+	
+	@Field("avgRating")
+	private int averageRating;
+	
+	@Field("rrp")
+	private BigDecimal priceToBuy;	
+	
 	@NotBlank
-	private String author;	
-	@NotBlank
+	@Field("cat")
 	private String category;
+	
 	@NotBlank
+	@Field("pub")
+	private String publisher;
+	
+	@NotBlank
+	@Field("isbn")
+	@Indexed(unique=true)
 	private String isbn;
-	
-	
-	public Book(String title, String author, String category, String isbn) {
-		super();
-		this.title = title;
-		this.author = author;
-		this.category = category;
-		this.isbn = isbn;
-	}
-
-
-	public String getId() {
-		return id;
-	}
-
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-
-	public String getTitle() {
-		return title;
-	}
-
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-
-	public String getAuthor() {
-		return author;
-	}
-
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-
-	public String getCategory() {
-		return category;
-	}
-
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author
-				+ ", category=" + category + ", isbn=" + isbn + "]";
-	}
-	
-	
+		
 }
