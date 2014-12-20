@@ -27,11 +27,11 @@ angular.module('mongorest.controllers', [])
   }])
 	.controller('AddBookController', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
     $log.debug('AddBookController controller fired.');
-    $scope.book = {title: null, authors: new Array(1), category: null, isbn: null};
+    $scope.book = {title: null, authors: [{name:''}], category: null, isbn: null};
     
     
     $scope.addAuthor = function () {
-      $scope.book.authors.push('');
+      $scope.book.authors.push({name:''});
     };
     
     $scope.removeAuthor = function (index) {
