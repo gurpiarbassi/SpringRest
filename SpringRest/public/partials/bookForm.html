@@ -1,20 +1,33 @@
 <form role="form">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" placeholder="Enter title" ng-model="book.title" required>
-  </div>
-  <div class="form-group">
-    <label for="author">Authors (Comma delimited)</label>
-    <input class="form-control" id="authors" placeholder="Enter author" ng-list ng-model="book.authors" required>
-  </div>
-  <div class="form-group">
-    <label for="category">Category</label>
-    <input type="text" class="form-control" id="category" placeholder="Enter category" ng-model="book.category" required>
-  </div>
-  <div class="form-group">
-    <label for="isbn">ISBN</label>
-    <input type="text" class="form-control" id="isbn" placeholder="Enter ISBN" ng-model="book.isbn" required>
-  </div>
-  <button type="submit" class="btn btn-success" ng-click="saveBook()">Save</button> <!-- add or modify book -->
-  <button type="button" class="btn btn-default" ng-click="goBack()">Cancel</button>
+	<div class="row">
+	  <div class="form-group col-md-5">
+	    <label for="title">Title</label>
+	    <input type="text" class="form-control" id="title" placeholder="Enter title" ng-model="book.title" required>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="form-group col-md-5">
+	    <label for="category">Category</label>
+	    <input type="text" class="form-control" id="category" placeholder="Enter category" ng-model="book.category" required>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="form-group col-md-5">
+	    <label for="isbn">ISBN</label>
+	    <input type="text" class="form-control" id="isbn" placeholder="Enter ISBN" ng-model="book.isbn" required>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="form-group col-md-5">
+	    <label for="author">Authors</label>
+	    
+	    <div ng-repeat="author in book.authors track by $index">
+	    	<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeAuthor($index)"></span>
+	    	<input class="form-control" placeholder="Enter author" ng-model="author" required>
+	    </div>
+	    <button ng-click="addAuthor()">Add Author</button>
+	  </div>
+    </div>
+	  <button type="submit" class="btn btn-success" ng-click="saveBook()">Save</button> <!-- add or modify book -->
+	  <button type="button" class="btn btn-default" ng-click="goBack()">Cancel</button>
 </form>

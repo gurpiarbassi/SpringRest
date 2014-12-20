@@ -5,7 +5,8 @@ angular.module('mongorest', [
   'restangular',
   'ui.router',
   'ui.bootstrap',
-  'mongorest.controllers'
+  'mongorest.controllers',
+  'mongorest.directives'
 ]).
   config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider', function ($stateProvider, $urlRouterProvider, RestangularProvider) {
     

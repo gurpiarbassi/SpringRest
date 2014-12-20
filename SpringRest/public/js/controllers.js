@@ -27,7 +27,16 @@ angular.module('mongorest.controllers', [])
   }])
 	.controller('CtrlAddBook', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
     $log.debug('CtrlAddBook controller fired.');
-    $scope.book = {title: null, authors: [], category: null, isbn: null};
+    $scope.book = {title: null, authors: new Array(1), category: null, isbn: null};
+    
+    
+    $scope.addAuthor = function () {
+      $scope.book.authors.push('');
+    };
+    
+    $scope.removeAuthor = function (index) {
+      $scope.book.authors.splice(index, 1);
+    };
     
     $scope.goBack = function(){
 		$state.go('s_list');
