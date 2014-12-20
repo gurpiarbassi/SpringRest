@@ -1,5 +1,6 @@
 package com.gurps.library.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,13 +18,8 @@ public interface LibraryService {
 	Book findBook(BookSpecification bookSpec);
 	List<Book> findBooks();
 	
-	//findByAgeGreaterThan(int age)
+	List<Book>findByAgeGreaterThan(int age);
 	
-	//findByAgeIn(Collection ages)
-	
-	/*findByActiveIsTrue()
-	{"active" : true}*/
-	
-	
+	List<Book>findByAgeIn(Collection ages);
 	
 }

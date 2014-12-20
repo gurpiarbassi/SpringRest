@@ -1,6 +1,7 @@
 package com.gurps.library.service;
 
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +26,18 @@ public class LibraryServiceImpl implements LibraryService{
 
 	@Override
 	public void deleteBook(Book book) {
-		// TODO Auto-generated method stub
+		libraryRepository.delete(book);
 		
 	}
 
 	@Override
 	public void deleteBook(String id) {
-		// TODO Auto-generated method stub
+		libraryRepository.delete(id);
 		
 	}
 
 	@Override
 	public Book findBook(BookSpecification bookSpec) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -46,4 +46,15 @@ public class LibraryServiceImpl implements LibraryService{
 		return libraryRepository.findAll();
 	}
 
+	@Override
+	public List<Book> findByAgeGreaterThan(int age) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Book> findByAgeIn(Collection ages) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
