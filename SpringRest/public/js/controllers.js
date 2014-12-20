@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mongorest.controllers', [])
-  .controller('MainCtrl', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
-    $log.debug('MainCtrl controller fired.');
+  .controller('MainController', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
+    $log.debug('MainController fired.');
     Restangular.all('list').getList().then(function(body) {
   	  $scope.bookList = body;
   	  $log.debug('books retrieved  = ' + $scope.bookList.length);
@@ -25,8 +25,8 @@ angular.module('mongorest.controllers', [])
 	  $state.go('s_update', book);
 	};
   }])
-	.controller('CtrlAddBook', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
-    $log.debug('CtrlAddBook controller fired.');
+	.controller('AddBookController', ['$scope', '$rootScope', '$log', '$state', 'Restangular', function($scope, $rootScope, $log, $state, Restangular) {
+    $log.debug('AddBookController controller fired.');
     $scope.book = {title: null, authors: new Array(1), category: null, isbn: null};
     
     
@@ -50,8 +50,8 @@ angular.module('mongorest.controllers', [])
 		});		
 	};	
   }])
-  .controller('CtrlUpdateBook', ['$scope', '$rootScope', '$log', '$state', '$stateParams', 'Restangular', function($scope, $rootScope, $log, $state, $stateParams, Restangular) {
-    $log.debug('CtrlUpdateBook controller fired with params ' + $stateParams.title);
+  .controller('UpdateBookController', ['$scope', '$rootScope', '$log', '$state', '$stateParams', 'Restangular', function($scope, $rootScope, $log, $state, $stateParams, Restangular) {
+    $log.debug('UpdateBookController controller fired with params ' + $stateParams.title);
      
     $scope.book = $stateParams;
     $scope.goBack = function(){

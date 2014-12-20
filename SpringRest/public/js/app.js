@@ -15,17 +15,17 @@ angular.module('mongorest', [
     $stateProvider.state('s_list', {
       url:         '/list',
       templateUrl: 'partials/list.html',
-      controller:  'MainCtrl'
+      controller:  'MainController'
     })
     .state('s_add', {
         url:         '/addNewBook',
         templateUrl: 'partials/bookForm.html',
-        controller:  'CtrlAddBook'
+        controller:  'AddBookController'
       })
     .state('s_update', {
         
         templateUrl: 'partials/bookForm.html',
-        controller:  'CtrlUpdateBook',
+        controller:  'UpdateBookController',
         params:      ['title', 'author', 'category', 'isbn']
       });
   }]).
