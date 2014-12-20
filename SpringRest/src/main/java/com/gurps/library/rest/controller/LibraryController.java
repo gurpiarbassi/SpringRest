@@ -1,7 +1,6 @@
 package com.gurps.library.rest.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gurps.library.domain.Author;
 import com.gurps.library.domain.Book;
-import com.gurps.library.rest.model.RecategorisationRequest;
 import com.gurps.library.rest.model.LibraryBook;
+import com.gurps.library.rest.model.RecategorisationRequest;
 import com.gurps.library.service.LibraryService;
 
 @RestController
@@ -37,14 +35,7 @@ public class LibraryController {
 	@RequestMapping(value="/addBook", method = RequestMethod.POST)
 	public ResponseEntity<String> addBook(@RequestBody @Valid final LibraryBook saveBookRequest){
 		Book book = dozerBeanMapper.map(saveBookRequest, Book.class);
-		/*Collection<Author> authors = new ArrayList<>();
-		for(String authorName : saveBookRequest.getAuthors()){
-			Author auth = new Author();
-			auth.setName(authorName);
-			authors.add(auth);
-		}
-		book.setAuthors(authors);
-		*/
+		
 		libraryService.saveBook(book);
 		//TODO perhaps test for exception here and translate to error response code??
 		
