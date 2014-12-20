@@ -37,13 +37,14 @@ public class LibraryController {
 	@RequestMapping(value="/addBook", method = RequestMethod.POST)
 	public ResponseEntity<String> addBook(@RequestBody @Valid final LibraryBook saveBookRequest){
 		Book book = dozerBeanMapper.map(saveBookRequest, Book.class);
-		Collection<Author> authors = new ArrayList<>();
+		/*Collection<Author> authors = new ArrayList<>();
 		for(String authorName : saveBookRequest.getAuthors()){
 			Author auth = new Author();
 			auth.setName(authorName);
 			authors.add(auth);
 		}
 		book.setAuthors(authors);
+		*/
 		libraryService.saveBook(book);
 		//TODO perhaps test for exception here and translate to error response code??
 		

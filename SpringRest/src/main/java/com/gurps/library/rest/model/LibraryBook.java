@@ -17,7 +17,7 @@ public class LibraryBook {
 	
 	@NotNull
 	@Size(min=1)
-	private Collection<String> authors;	
+	private Collection<Author> authors;	
 	@NotBlank
 	private String category;
 	@NotBlank
