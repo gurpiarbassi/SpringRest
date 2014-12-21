@@ -53,7 +53,7 @@ angular.module('mongorest.controllers', [])
 	};	
   }])
   .controller('UpdateBookController', ['$scope', '$rootScope', '$log', '$state', '$stateParams', 'Restangular', function($scope, $rootScope, $log, $state, $stateParams, Restangular) {
-    $log.debug('UpdateBookController controller fired with params ' + $stateParams.title);
+    $log.debug('UpdateBookController controller fired with params ' + angular.toJson($stateParams, true));
      
     $scope.book = $stateParams;
     $scope.goBack = function(){
