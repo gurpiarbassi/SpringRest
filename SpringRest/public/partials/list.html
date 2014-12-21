@@ -23,4 +23,4 @@
 </table>
 
 <button type="button" class="btn btn-primary" ng-click="showAddForm()">Add</button>
-<button type="button" class="btn btn-danger" ng-click="deleteBook()">Delete</button>
+<button type="button" class="btn btn-danger" ng-click="deleteBook()" data-ng-disabled="!selectedBook">Delete</button>
