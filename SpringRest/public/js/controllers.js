@@ -15,9 +15,11 @@ angular.module('mongorest.controllers', [])
 	};
 	
 	$scope.deleteBook = function(){
-		Restangular.one("delete").customDELETE($scope.selectedBook).then(function() {
+	
+		//Restangular.one("delete").customDELETE($scope.selectedBook).then(function() {
+		  Restangular.one("book", $scope.selectedBook).remove().then(function() {
 		  $log.debug('refreshing list');
-	  	  $state.go('s_list');
+	  	  $state.go($state.current, {}, {reload: true});
 		});
 	};
 	

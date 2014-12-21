@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoFactoryBean;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Component;
@@ -56,6 +58,11 @@ public class MongoConnectionConfig /* extends AbstractMongoConfiguration */{
 
 	public @Bean MongoDbFactory mongoDbFactory() throws Exception {
 		return new SimpleMongoDbFactory(new MongoClient(getIp(), getPort()), getName());
+	}
+	
+	public @Bean MongoOperations mongoTemplate(Mongo mongo) throws Exception {
+		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
+		return mongoTemplate;
 	}
 
 }

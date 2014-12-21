@@ -15,6 +15,7 @@ public interface LibraryService {
 	void saveBook(Book book);
 	void deleteBook(Book book);
 	void deleteBook(String id);
+	void deleteBookByIsbn(String isbn);
 	Book findBook(BookSpecification bookSpec);
 	List<Book> findBooks();
 	

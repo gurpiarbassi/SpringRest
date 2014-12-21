@@ -33,13 +33,13 @@ public class LibraryController {
 	
 
 	@RequestMapping(value="/addBook", method = RequestMethod.POST)
-	public ResponseEntity<String> addBook(@RequestBody @Valid final LibraryBook saveBookRequest){
+	public ResponseEntity<HttpStatus> addBook(@RequestBody @Valid final LibraryBook saveBookRequest){
 		Book book = dozerBeanMapper.map(saveBookRequest, Book.class);
 		
 		libraryService.saveBook(book);
 		//TODO perhaps test for exception here and translate to error response code??
 		
-		return new ResponseEntity<String>(HttpStatus.OK);	
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value="/addBooks", method = RequestMethod.POST)
@@ -75,9 +75,12 @@ public class LibraryController {
 		return new ResponseEntity<List<LibraryBook>>(libraryBooks, HttpStatus.OK);	
 	}
 	
-	@RequestMapping(value = "delete/{isbn}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable("isbn") String isbn){
+	@RequestMapping(value = "book/{isbn}", method = RequestMethod.DELETE)
+	public ResponseEntity<HttpStatus> delete(@PathVariable("isbn") @NotEmpty String isbn){
 	
 		System.out.println("deleting isbn " + isbn);
+		libraryService.deleteBookByIsbn(isbn);
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		
 	}
 }

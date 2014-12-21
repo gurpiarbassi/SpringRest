@@ -32,8 +32,7 @@ public class LibraryServiceImpl implements LibraryService{
 
 	@Override
 	public void deleteBook(String id) {
-		libraryRepository.delete(id);
-		
+		libraryRepository.delete(id);		
 	}
 
 	@Override
@@ -56,5 +55,11 @@ public class LibraryServiceImpl implements LibraryService{
 	public List<Book> findByAgeIn(Collection ages) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteBookByIsbn(String isbn) {
+		libraryRepository.deleteBookByIsbn(isbn);	
+		
 	}
 }
