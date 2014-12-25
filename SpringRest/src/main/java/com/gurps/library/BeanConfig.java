@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternUtils;
 
-import com.gurps.library.util.StringToAuthorListConverter;
+//import com.gurps.library.util.StringToAuthorListConverter;
 
 @Configuration
 @EnableAutoConfiguration
