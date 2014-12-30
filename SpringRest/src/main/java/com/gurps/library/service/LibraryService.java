@@ -16,8 +16,10 @@ public interface LibraryService {
 	void deleteBook(Book book);
 	void deleteBook(String id);
 	void deleteBookByIsbn(String isbn);
-	Book findBook(BookSpecification bookSpec);
+	
+	List<Book> findBook(BookSpecification bookSpec);
 	List<Book> findBooks();
+	Book findByIsbn(String isbn);
 	
 	List<Book>findByAgeGreaterThan(int age);
 	

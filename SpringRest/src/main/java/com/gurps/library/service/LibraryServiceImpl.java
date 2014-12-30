@@ -36,8 +36,12 @@ public class LibraryServiceImpl implements LibraryService{
 	}
 
 	@Override
-	public Book findBook(BookSpecification bookSpec) {
+	public List<Book> findBook(BookSpecification bookSpec) {
 		return null;
+	}
+	
+	public Book findByIsbn(String isbn) {
+		return libraryRepository.findByIsbn(isbn);
 	}
 
 	@Override

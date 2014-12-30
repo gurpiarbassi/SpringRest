@@ -12,7 +12,7 @@
   </thead>
   <tbody>  
 	  <tr ng-repeat="book in bookList">
-	  	<td><a href="" ng-click="selectBook(book)">{{book.title}}</a></td>
+	  	<td><a href="" ng-click="selectBook(book.isbn)">{{book.title}}</a></td>
 	  	<td author-display></td>
 	  	<td>{{book.category}}</td>
 	  	<td>{{book.isbn}}</td>

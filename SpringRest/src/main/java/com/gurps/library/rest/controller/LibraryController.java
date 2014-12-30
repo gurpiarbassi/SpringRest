@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gurps.library.domain.Book;
+import com.gurps.library.domain.BookSpecification;
 import com.gurps.library.rest.model.LibraryBook;
 import com.gurps.library.rest.model.RecategorisationRequest;
 import com.gurps.library.service.LibraryService;
@@ -47,9 +48,10 @@ public class LibraryController {
 		return new ResponseEntity<List<LibraryBook>>(books, HttpStatus.OK);	
 	}
 	
-	@RequestMapping(value="/getBook{isbn}", method = RequestMethod.GET)
+	@RequestMapping(value="/getBook/{isbn}", method = RequestMethod.GET)
 	public ResponseEntity<LibraryBook> getBook(@PathVariable("isbn") @NotEmpty String isbn){
-		return new ResponseEntity<LibraryBook>(new LibraryBook(), HttpStatus.OK);	
+		Book book = libraryService.findByIsbn(isbn);
+		return new ResponseEntity<LibraryBook>(dozerBeanMapper.map(book, LibraryBook.class), HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value="/update", method = RequestMethod.PUT)
