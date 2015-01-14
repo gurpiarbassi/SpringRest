@@ -33,7 +33,7 @@ public class LibraryController {
 	private Mapper dozerBeanMapper;
 	
 
-	@RequestMapping(value="/addBook", method = RequestMethod.POST)
+	@RequestMapping(value="/saveBook", method = RequestMethod.POST)
 	public ResponseEntity<HttpStatus> addBook(@RequestBody @Valid final LibraryBook saveBookRequest){
 		Book book = dozerBeanMapper.map(saveBookRequest, Book.class);
 		
@@ -51,12 +51,21 @@ public class LibraryController {
 	@RequestMapping(value="/getBook/{isbn}", method = RequestMethod.GET)
 	public ResponseEntity<LibraryBook> getBook(@PathVariable("isbn") @NotEmpty String isbn){
 		Book book = libraryService.findByIsbn(isbn);
-		return new ResponseEntity<LibraryBook>(dozerBeanMapper.map(book, LibraryBook.class), HttpStatus.OK);	
+		LibraryBook libraryBook = dozerBeanMapper.map(book, LibraryBook.class);
+		return new ResponseEntity<LibraryBook>(libraryBook, HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value="/update", method = RequestMethod.PUT)
-	public ResponseEntity<LibraryBook> updateBook(@RequestBody @Valid LibraryBook book){
-		return new ResponseEntity<LibraryBook>(new LibraryBook(), HttpStatus.OK);	
+	public ResponseEntity<HttpStatus> updateBook(@RequestBody @Valid LibraryBook libraryBook){
+		
+		//find the book.
+		
+		Book book = dozerBeanMapper.map(libraryBook, Book.class);
+		
+		libraryService.saveBook(book);
+		//TODO perhaps test for exception here and translate to error response code??
+		
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value="/reCategorise", method = RequestMethod.PUT)

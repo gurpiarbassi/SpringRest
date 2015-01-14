@@ -19,6 +19,10 @@
       <a>isbn</a>
       <b>isbn</b>
     </field>
+    <field>
+      <a>id</a>
+      <b>id</b>
+    </field>
   </mapping> 
   
   

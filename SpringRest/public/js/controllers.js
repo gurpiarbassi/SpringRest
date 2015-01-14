@@ -43,7 +43,7 @@ angular.module('mongorest.controllers', [])
 	};
 	
 	$scope.saveBook = function(){
-		Restangular.all('addBook').post($scope.book).then(function(body) {
+		Restangular.all('saveBook').post($scope.book).then(function(body) {
 	  	  var savedBook = body;
 	  	  $log.debug('book saved  = ' + savedBook);
 	  	  $state.go('s_list');
@@ -73,10 +73,10 @@ angular.module('mongorest.controllers', [])
 	};
 	
 	$scope.saveBook = function(){
-		Restangular.all('addBook').post($scope.book).then(function(body) {
-	  	  var savedBook = body;
-	  	  $log.debug('book saved  = ' + savedBook);
-	  	  $state.go('s_list');
+		Restangular.all('saveBook').post($scope.book).then(function(body) {
+		var savedBook = body;
+	  	$log.debug('book saved  = ' + savedBook);
+	  	$state.go('s_list');
 		});		
 	};	
   }]);

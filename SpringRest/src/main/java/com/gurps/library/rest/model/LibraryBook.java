@@ -22,4 +22,6 @@ public class LibraryBook {
 	private String category;
 	@NotBlank
 	private String isbn;
+	
+	private String id;
 }
