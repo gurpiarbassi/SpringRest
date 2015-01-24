@@ -23,10 +23,9 @@ angular.module('mongorest', [
         controller:  'AddBookController'
       })
     .state('s_update', {
-        
+    	url:         '/updateBook/:isbn',
         templateUrl: 'partials/bookForm.html',
-        controller:  'UpdateBookController',
-        params:      ['isbn']
+        controller:  'UpdateBookController'
       });
   }]).
 run(['$log', 'Restangular', '$location', function($log, Restangular, $location) {
