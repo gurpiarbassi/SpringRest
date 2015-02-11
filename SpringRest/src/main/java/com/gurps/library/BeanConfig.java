@@ -28,7 +28,7 @@ public class BeanConfig {
 	@Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON) //just being explicit for understanding
 	public DozerBeanMapperFactoryBean dozerBeanMapperFactoryBean() throws IOException{
 		DozerBeanMapperFactoryBean mapperFactory = new DozerBeanMapperFactoryBean();
-		mapperFactory.setMappingFiles(ResourcePatternUtils.getResourcePatternResolver(resourceLoader).getResources("classpath:*mapping.xml"));
+		mapperFactory.setMappingFiles(ResourcePatternUtils.getResourcePatternResolver(resourceLoader).getResources("classpath:*Mapping.xml"));
 		
 		/*List<CustomConverter> customConverters = new ArrayList<>();
 		customConverters.add(new StringToAuthorListConverter());
