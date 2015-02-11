@@ -4,6 +4,8 @@
           xsi:schemaLocation="http://dozer.sourceforge.net
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
           
+          <!-- Even though Dozer doesnt require you to specify a mapping when the field names are the 
+          same across the objects, I have put it in for completeness. -->
   <mapping> 
     <class-a>com.gurps.library.rest.model.LibraryBook</class-a>
     <class-b>com.gurps.library.domain.Book</class-b>   
